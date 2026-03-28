@@ -27,9 +27,9 @@
       --bg: #050e0a;
       --panel: #0a1a12;
       --border: rgba(0,255,136,0.18);
-      --text: #c8fde0;
-      --mono: 'Share Tech Mono', monospace;
-      --display: 'Orbitron', sans-serif;
+      --text: #00ff88;
+      --mono: 'Share Tech Mono', 'Courier New', Courier, monospace;
+      --display: 'Orbitron', 'Courier New', Courier, monospace;
     }
 
     body {
@@ -117,12 +117,39 @@
     .subtitle {
       font-size: 0.75rem;
       letter-spacing: 0.3em;
-      color: rgba(200,253,224,0.4);
+      color: #00ff88;
       text-transform: uppercase;
     }
 
+    /* ── AUTHOR TAG ── */
+    .author-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 5px 18px;
+      border: 1px solid #00ff88;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: #00ff88;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(0,255,136,0.3), inset 0 0 12px rgba(0,255,136,0.05);
+      animation: authorGlow 2.5s ease-in-out infinite;
+    }
+    .author-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00ff88;
+      box-shadow: 0 0 8px #00ff88;
+    }
+    @keyframes authorGlow {
+      0%, 100% { box-shadow: 0 0 12px rgba(0,255,136,0.3), inset 0 0 12px rgba(0,255,136,0.05); }
+      50% { box-shadow: 0 0 24px rgba(0,255,136,0.6), inset 0 0 16px rgba(0,255,136,0.1); }
+    }
+
     /* ── CONNECTION STATUS ── */
-    .conn-bar {
+    .conn-bar { color: #00ff88 !important;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -130,7 +157,7 @@
       margin-bottom: 36px;
       font-size: 0.72rem;
       letter-spacing: 0.15em;
-      color: rgba(200,253,224,0.5);
+      color: #00ff88;
     }
 
     .conn-dot {
@@ -191,7 +218,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(200,253,224,0.45);
+      color: #00ff88;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -206,20 +233,21 @@
 
     .card-value {
       font-family: var(--display);
-      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-size: clamp(2.8rem, 8vw, 3.8rem);
       font-weight: 700;
-      color: var(--green);
+      color: #00ff88;
       text-shadow: 0 0 24px var(--green-glow);
       line-height: 1;
       transition: color 0.4s;
+      -webkit-text-fill-color: #00ff88;
     }
 
-    .card-value.warn { color: #ffcc00; text-shadow: 0 0 24px rgba(255,204,0,0.3); }
-    .card-value.danger { color: var(--red); text-shadow: 0 0 24px rgba(255,68,102,0.3); }
+    .card-value.warn { color: #ffcc00 !important; -webkit-text-fill-color: #ffcc00 !important; text-shadow: 0 0 24px rgba(255,204,0,0.3); }
+    .card-value.danger { color: #ff4466 !important; -webkit-text-fill-color: #ff4466 !important; text-shadow: 0 0 24px rgba(255,68,102,0.3); }
 
-    .card-unit {
+    .card-unit { color: #00ff88 !important;
       font-size: 0.8rem;
-      color: rgba(200,253,224,0.4);
+      color: #00ff88;
       margin-top: 6px;
     }
 
@@ -260,7 +288,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(200,253,224,0.45);
+      color: #00ff88;
       margin-bottom: 10px;
       display: flex; align-items: center; gap: 8px;
     }
@@ -281,7 +309,7 @@
     }
 
     .pompa-status.off {
-      color: rgba(200,253,224,0.3);
+      color: #00dd77;
     }
 
     .timer-text {
@@ -345,7 +373,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(200,253,224,0.45);
+      color: #00ff88;
       margin-bottom: 16px;
       display: flex; align-items: center; gap: 8px;
     }
@@ -365,12 +393,12 @@
     .history-list::-webkit-scrollbar-track { background: transparent; }
     .history-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    .history-item {
+    .history-item { color: #00ff88 !important;
       display: flex;
       align-items: center;
       gap: 12px;
       font-size: 0.72rem;
-      color: rgba(200,253,224,0.5);
+      color: #00ff88;
       padding: 8px 12px;
       border: 1px solid rgba(0,255,136,0.07);
       border-radius: 6px;
@@ -382,13 +410,13 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .history-item .hi-time { color: rgba(200,253,224,0.3); min-width: 60px; }
+    .history-item .hi-time { color: #00dd77; min-width: 60px; }
     .history-item .hi-tds { color: var(--green); }
     .history-item .hi-suhu { color: var(--cyan); }
 
-    .empty-state {
+    .empty-state { color: #00aa55 !important;
       text-align: center;
-      color: rgba(200,253,224,0.2);
+      color: #00bb66;
       font-size: 0.72rem;
       padding: 24px;
       letter-spacing: 0.15em;
@@ -436,7 +464,7 @@
 
     .btn-install {
       font-family: var(--display);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       padding: 8px 16px;
@@ -451,7 +479,7 @@
     .btn-dismiss {
       background: transparent;
       border: none;
-      color: rgba(200,253,224,0.3);
+      color: #00dd77;
       font-size: 1.2rem;
       cursor: pointer;
       padding: 4px;
@@ -459,12 +487,12 @@
     }
 
     /* ── FOOTER ── */
-    footer {
+    footer { color: #00cc66 !important;
       text-align: center;
       margin-top: 40px;
       font-size: 0.62rem;
       letter-spacing: 0.2em;
-      color: rgba(200,253,224,0.18);
+      color: #00aa55;
     }
   </style>
 </head>
@@ -478,7 +506,7 @@
       <div class="logo-icon"><img src="icon-192.png" style="width:32px;height:32px;object-fit:contain;"/></div>
       <h1>Monitoring.Id</h1>
     </div>
-    <p class="subtitle">TDS Monitoring System — Real-time Dashboard</p>
+    <div class="author-tag"><span class="author-dot"></span><span>⚡ Developed by Rangga Desta Pratama</span></div>
   </header>
 
   <!-- CONNECTION BAR -->
