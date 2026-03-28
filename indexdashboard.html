@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>TDS Monitor</title>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+
+<body style="background:black;color:white;text-align:center;font-family:sans-serif;">
+
+<h1>MyHidroponik</h1>
+
+<h2 id="tds">TDS: --</h2>
+<h2 id="suhu">Suhu: --</h2>
+
+<button onclick="pompaOn()" 
+style="padding:15px;font-size:18px;background:green;color:white;margin:10px;">
+START POMPA
+</button>
+
+<h3 id="statusPompa">Pompa: OFF</h3>
+<h2 id="timer">--</h2>
+
+<p id="status">Connecting...</p>
+
+<script>
+
+const client = mqtt.connect('wss://broker.hivemq.com:8884/mqtt');
+
+let countdownInterval = null;
+
+// CONNECT
+client.on('connect', function () {
+  document.getElementById("status").innerHTML = "Connected";
+  client.subscribe('tds/sensor1/data');
+});
+
+// TERIMA DATA
+client.on('message', function (topic, message) {
+  let data = JSON.parse(message.toString());
+
+  document.getElementById("tds").innerHTML =
+    "TDS: " + data.tds + " ppm";
+
+  document.getElementById("suhu").innerHTML =
+    "Suhu: " + data.suhu + " °C";
+});
+
+// ===== POMPA + COUNTDOWN =====
+function pompaOn(){
+
+  client.publish('tds/sensor1/pompa','ON');
+  document.getElementById("statusPompa").innerHTML = "Pompa: ON";
+
+  let waktu = 10;
+
+  // tampil awal
+  document.getElementById("timer").innerHTML = "OFF dalam " + waktu + " detik";
+
+  // reset interval lama
+  if (countdownInterval) clearInterval(countdownInterval);
+
+  countdownInterval = setInterval(function(){
+    waktu--;
+
+    document.getElementById("timer").innerHTML =
+      "OFF dalam " + waktu + " detik";
+
+    if (waktu <= 0){
+      clearInterval(countdownInterval);
+
+      client.publish('tds/sensor1/pompa','OFF');
+      document.getElementById("statusPompa").innerHTML = "Pompa: OFF";
+      document.getElementById("timer").innerHTML = "Pompa selesai";
+    }
+
+  }, 1000);
+}
+
+</script>
+
+</body>
+</html>
